@@ -12,6 +12,18 @@ function calculateAverageSales(sales) {
     const totalSales = sales.reduce((sum,current) => sum + current, 0);
     return totalSales/ sales.length;
 }
- salesData.forEach(person => {
-    const averageSales = calculateAverageSales(person.sales);
- });
+
+function determinePerformanceRating (averageSales){
+    if(averageSales>10000){
+        return "Excellent";
+    }
+    else if (averageSales>=7000){
+        return "Good";
+    }
+    else if (averageSales>=4000){
+        return "Satisfactory";
+    }
+    else {
+        "Needs Improvement";
+    }
+}
