@@ -27,3 +27,23 @@ function determinePerformanceRating (averageSales){
         "Needs Improvement";
     }
 }
+
+function findTopAndBottomPerformers(salesData) {
+
+    // Reduce to find top and bottom performers
+    return salesData.reduce((acc, { name, sales }) => {
+        // Calculate total sales for the current salesperson
+        const totalSales = sales.reduce((sum, sale) => sum + sale, 0);
+
+        // Initialize top and bottom performers if they don't exist
+        if (!acc.topPerformer || totalSales > acc.topPerformer.totalSales) {
+            acc.topPerformer = { name, totalSales };
+        }
+
+        if (!acc.bottomPerformer || totalSales < acc.bottomPerformer.totalSales) {
+            acc.bottomPerformer = { name, totalSales };
+        }
+
+        return acc;
+    }, { topPerformer: null, bottomPerformer: null });
+}
